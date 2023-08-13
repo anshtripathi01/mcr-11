@@ -33,6 +33,7 @@ const MovieCard = ({ movie }) => {
       <Text fontSize="xl" fontWeight="bold" mt="2">
         {movie.title}
       </Text>
+      <Text>{movie.summary}</Text>
       <Tag colorScheme="teal" mt="1" fontSize="sm">
         Year: {movie.year}
       </Tag>
