@@ -1,4 +1,3 @@
-// pages/Home.js
 import React, { useState } from 'react';
 import { movies } from '../data/data';
 import { Select, Button, VStack } from '@chakra-ui/react';
