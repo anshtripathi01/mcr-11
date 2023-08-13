@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Flex, Heading, Input, SimpleGrid } from "@chakra-ui/react";
-import MovieCard from "./MovieCard";
+// components/MovieList.js
+import React, { useEffect, useState } from 'react';
+import { Flex, Heading, Input, SimpleGrid } from '@chakra-ui/react';
+import MovieCard from './MovieCard';
 
 const MovieList = ({ movies }) => {
-  const [filterSearch, setFilterSearch] = useState([]);
+
+    const [filterSearch, setFilterSearch] = useState([]);
   const [query, setQuery] = useState("");
   console.log(movies);
   const searchMovie = (query) => {
@@ -14,15 +16,15 @@ const MovieList = ({ movies }) => {
           summary.toLowerCase().includes(query.toLowerCase())
       )
     );
-    console.log(filterSearch, "filterserach");
   };
   useEffect(() => {
     searchMovie(query);
     // eslint-disable-next-line
   }, [query]);
+
   return (
     <Flex flexDirection="column">
-      <Input
+    <Input
         onChange={(e) => setQuery(e.target.value)}
         placeholder="search movies"
         m="1rem"
@@ -33,14 +35,14 @@ const MovieList = ({ movies }) => {
         ml="15rem"
         color="#fff"
       />
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="4">
-        {!filterSearch?.length && (
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="4">
+    {!filterSearch?.length && (
           <Heading size="md">No movies found !</Heading>
         )}
-        {filterSearch.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </SimpleGrid>
+      {query ? filterSearch : movies.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </SimpleGrid>
     </Flex>
   );
 };
